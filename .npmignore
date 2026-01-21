@@ -1,0 +1,29 @@
+# Development files
+.git/
+.gitignore
+.DS_Store
+.idea/
+.vscode/
+
+# Test files
+scripts/test-install.js
+
+# Documentation (keep INSTALLATION.md and README.md)
+CONTRIBUTING.md
+
+# Examples that users don't need in node_modules
+examples/
+
+# Personal/private configs
+personal/
+private/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Lock files
+package-lock.json
+yarn.lock

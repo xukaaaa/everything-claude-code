@@ -1,8 +1,41 @@
 {
+  "name": "@xukaaaa/claude-everything",
+  "version": "1.0.0",
+  "description": "Complete Claude Code configuration with agents, skills, rules, and workflows",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js",
+    "setup": "node bin/setup.js"
+  },
+  "bin": {
+    "claude-setup": "./bin/setup.js"
+  },
+  "keywords": [
+    "claude",
+    "ai",
+    "agents",
+    "skills",
+    "workflow",
+    "automation"
+  ],
+  "author": "xukaaaa",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xukaaaa/claude-everything.git"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.6",
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.2.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "eslint": "^9.39.2",
     "globals": "^17.1.0",
     "markdownlint-cli": "^0.47.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
