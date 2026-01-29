@@ -16,13 +16,68 @@ Located in `~/.claude/agents/`:
 | refactor-cleaner | Dead code cleanup | Code maintenance |
 | doc-updater | Documentation | Updating docs |
 
+## Built-in Explore Subagent
+
+**CRITICAL for Context Management**: Use Explore subagent to keep codebase scanning OUT of main conversation context.
+
+### Explore Characteristics
+- **Model**: Haiku (fast, low-latency)
+- **Tools**: Read-only (Glob, Grep, Read - NO Write/Edit)
+- **Purpose**: File discovery, code search, codebase exploration
+- **Benefit**: Keeps exploration results out of main context window
+
+### When to Use Explore
+
+**ALWAYS use Explore for:**
+1. **Initial codebase scanning** - Finding files, patterns, structure
+2. **Multi-location searches** - Searching across multiple directories
+3. **Uncertain searches** - When you don't know where code lives
+4. **Large-scale analysis** - Understanding project conventions
+5. **Pattern discovery** - Finding similar implementations
+
+**DON'T use Explore for:**
+- Reading specific files you already know about (use Read directly)
+- Making changes (Explore is read-only)
+- Single file operations
+
+### Thoroughness Levels
+
+```typescript
+// Quick: Targeted lookups (specific file/function names)
+Task(subagent_type: "Explore", prompt: "Find the UserAuth component. Thoroughness: quick")
+
+// Medium: Balanced exploration (patterns, conventions)
+Task(subagent_type: "Explore", prompt: "How are API routes structured? Thoroughness: medium")
+
+// Very thorough: Comprehensive analysis (full understanding)
+Task(subagent_type: "Explore", prompt: "Analyze entire authentication system. Thoroughness: very thorough")
+```
+
+### Context Savings Example
+
+```markdown
+# BAD: Direct scanning (fills main context)
+Grep pattern="API endpoint" path="src/"
+Glob pattern="**/*route*.ts"
+Read file_path="src/api/users.ts"
+Read file_path="src/api/auth.ts"
+# Result: 5000+ tokens in main context
+
+# GOOD: Delegate to Explore (keeps context clean)
+Task(
+  subagent_type: "Explore",
+  prompt: "Find all API endpoints and their authentication patterns. Thoroughness: medium"
+)
+# Result: ~500 tokens in main context (just the summary)
+```
+
 ## Immediate Agent Usage
 
 No user prompt needed:
-1. Complex feature requests - Use **planner** agent
-2. Code just written/modified - Use **code-reviewer** agent
+1. Complex feature requests - Use **planner** agent (which uses Explore internally)
+2. Code just written/modified - Use **code-reviewer** agent (which uses Explore for context)
 3. Bug fix or new feature - Use **tdd-guide** agent
-4. Architectural decision - Use **architect** agent
+4. Architectural decision - Use **architect** agent (which uses Explore internally)
 
 ## Parallel Task Execution
 
