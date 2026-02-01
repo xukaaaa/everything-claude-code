@@ -43,3 +43,32 @@ When creating PRs:
 4. **Commit & Push**
    - Detailed commit messages
    - Follow conventional commits format
+
+## Commit & Push Protocol
+
+**CRITICAL: NEVER auto-commit or push without explicit user request.**
+
+### Rules
+
+- **NEVER** commit code without user explicitly requesting it
+- **NEVER** push code without user explicitly requesting it
+- **NEVER** assume user wants code committed/pushed
+- **ALWAYS** ask user before committing/pushing
+- **ALWAYS** show what will be committed before doing it
+- **ALWAYS** wait for user confirmation
+
+### When to Commit/Push
+
+Only commit/push when:
+1. User explicitly says "commit", "push", "merge", etc.
+2. User confirms after seeing the diff
+3. User approves the commit message
+
+### Workflow
+
+Before committing:
+1. Show the diff/changes to user
+2. Show the proposed commit message
+3. Ask: "Ready to commit and push?"
+4. Wait for user confirmation
+5. Only then commit and push

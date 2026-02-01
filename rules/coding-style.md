@@ -68,3 +68,35 @@ Before marking work complete:
 - [ ] No console.log statements
 - [ ] No hardcoded values
 - [ ] No mutation (immutable patterns used)
+
+## Documentation Policy
+
+**NEVER create markdown guides, tutorials, or documentation files unless explicitly requested by user.**
+
+### What NOT to Create
+
+Do not create these files without user request:
+- README.md, GUIDE.md, TUTORIAL.md, HOW-TO.md
+- Setup instructions or architecture documentation
+- API documentation (unless part of code comments)
+- Troubleshooting guides or best practices documents
+- Any .md/.txt files for explanation/guidance
+
+### What IS Allowed
+
+Create these without user request:
+- Code comments (inline, JSDoc, TypeDoc)
+- Type definitions and interfaces
+- Error messages in code
+- Configuration files (JSON, YAML, etc.)
+- Test files with descriptive names
+
+### When User Requests Documentation
+
+If user explicitly says:
+- "Create a README"
+- "Write a guide for..."
+- "Document this feature"
+- "Add setup instructions"
+
+Then create the markdown file. Otherwise, do not create it.
