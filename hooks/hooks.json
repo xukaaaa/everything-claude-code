@@ -23,14 +23,24 @@
         "description": "Reminder to use tmux for long-running commands"
       },
       {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"git commit\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"console.error('[Hook] ⚠️  COMMIT REQUESTED');console.error('[Hook] Please confirm commit in the chat before proceeding');console.error('[Hook] Show diff and commit message to user first');process.exit(1)\""
+          }
+        ],
+        "description": "Ask user confirmation before git commit"
+      },
+      {
         "matcher": "tool == \"Bash\" && tool_input.command matches \"git push\"",
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"console.error('[Hook] Review changes before push...');console.error('[Hook] Continuing with push (remove this hook to add interactive review)')\""
+            "command": "node -e \"console.error('[Hook] ⚠️  PUSH REQUESTED');console.error('[Hook] Please confirm push in the chat before proceeding');console.error('[Hook] Verify all changes are correct');process.exit(1)\""
           }
         ],
-        "description": "Reminder before git push to review changes"
+        "description": "Ask user confirmation before git push"
       },
       {
         "matcher": "tool == \"Write\" && tool_input.file_path matches \"\\\\.(md|txt)$\" && !(tool_input.file_path matches \"README\\\\.md|CLAUDE\\\\.md|AGENTS\\\\.md|CONTRIBUTING\\\\.md\")",
